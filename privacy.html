@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>Privacy Policy</title>
+</head>
+<body>
+  <article id="privacy"></article>
+
+  <script>
+    async function fetchPrivacyData() {
+      try {
+        const response = await fetch('https://ar-model-lab.microcms.io/api/v1/privacy', {
+          headers: {
+            'X-MICROCMS-API-KEY': 'iKpDTqhduS0lIryDMNioKrLD9Yr58QRMEj4R'
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        document.getElementById('privacy').innerHTML = data.body;
+      } catch (error) {
+        console.error('Error fetching privacy data:', error);
+      }
+    }
+
+    fetchPrivacyData();
+  </script>
+</body>
+</html>

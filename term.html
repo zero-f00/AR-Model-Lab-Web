@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>Term Document</title>
+</head>
+<body>
+  <article id="term"></article>
+
+  <script>
+    async function fetchTermData() {
+      try {
+        const response = await fetch('https://ar-model-lab.microcms.io/api/v1/term', {
+          headers: {
+            'X-MICROCMS-API-KEY': 'iKpDTqhduS0lIryDMNioKrLD9Yr58QRMEj4R'
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        document.getElementById("term").innerHTML = data.body;
+      } catch (error) {
+        console.error('Error fetching term data:', error);
+      }
+    }
+
+    fetchTermData();
+  </script>
+</body>
+</html>
